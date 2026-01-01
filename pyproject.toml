@@ -1,0 +1,39 @@
+[project]
+name = "bots"
+version = "0.1.0"
+dependencies = [
+    "discord-py>=2.6.4",
+    "asyncio~=3.4.3",
+    "pillow~=10.3.0",
+    "termcolor>=2.4.0",
+    "pynacl>=1.5.0",
+    "pyttsx3>=2.97",
+    "ollama>=0.3.3",
+    "emoji>=2.13.2",
+    "httpx>=0.28.1",
+    "wand>=0.6.13",
+    "mcstatus>=12.0.6",
+]
+requires-python = ">= 3.8"
+
+[project.scripts]
+goose = "bots.goose:run"
+tener = "bots.tener:run"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.rye]
+managed = true
+dev-dependencies = []
+
+[tool.hatch.metadata]
+allow-direct-references = true
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/bots"]
+
+[tool.pyright]
+venvPath = "."
+venv = ".venv"
