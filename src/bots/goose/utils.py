@@ -109,7 +109,7 @@ async def jimothy(message: discord.Message) -> None:
     )
 
 async def llm_action(
-    message: discord.Message,
+    channel: discord.TextChannel,
     prompt: str,
     callback: Callable[[str], Awaitable[None]],
     system: Optional[str] = None
@@ -120,7 +120,7 @@ async def llm_action(
         else:
             system = GOOSE_SYSTEM
 
-    async with message.channel.typing():
+    async with channel.typing():
         response = ollama.chat(
             model='llama3.1',
             messages=[
@@ -145,7 +145,7 @@ async def llm_respond(
     async def responder(response: str) -> None:
         await message.reply(response)
 
-    await llm_action(message, prompt, responder, system)
+    await llm_action(message.channel, prompt, responder, system)
 
 async def llm_speak(message: discord.Message, prompt: str) -> None:
     async def responder(response: str) -> None:
@@ -153,7 +153,7 @@ async def llm_speak(message: discord.Message, prompt: str) -> None:
         await message.reply(f'{parrot} {response}')
         await speak_text(message, response)
 
-    await llm_action(message, prompt, responder)
+    await llm_action(message.channel, prompt, responder)
 
 async def llm_rate(message: discord.Message) -> None:
     for attachment in message.attachments:
