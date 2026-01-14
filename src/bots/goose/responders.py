@@ -225,10 +225,10 @@ HONK HONK! RESISTANCE IS FUTILE. PAY UP NOW AND ENJOY YOUR FROMAGE WITH A CLEAR 
 
     if message.content == '!deplayne':
         await message.delete()
-        await message.channel.send(file=discord.File(f'assets/jim/{random.choice(os.listdir('jim'))}'))
+        await message.channel.send(file=discord.File(f'assets/jim/{random.choice(os.listdir('assests/jim'))}'))
 
     if message.content == '!πs' or message.content == '!pis':
-        files = ', '.join(sorted([sound[:-4] for sound in os.listdir('assets/3b59b')]))
+        files = ', '.join(sorted([pi[:-4] for pi in os.listdir('assets/3b59b')]))
         await message.channel.send(f'pis: {files}')
 
     if message.content.startswith('!sp '):
@@ -353,6 +353,14 @@ async def text(client: discord.Client, message: discord.Message) -> None:
             message = message.reference.resolved
 
         for reaction in random.sample(['🟢', '🟡', '🟠', '🔴', '🟣', '🔵'], 6):
+            await message.add_reaction(reaction)
+
+    if 'fruition' in message.content.lower():
+        if message.reference:
+            await message.delete()
+            message = message.reference.resolved
+
+        for reaction in ['🍎', '🥭', '🍊', '🍋', '🍈', '🍏', '🫐', '🍇']:
             await message.add_reaction(reaction)
 
     if 'daily meme' in message.content.lower():

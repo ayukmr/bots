@@ -199,8 +199,8 @@ async def bird_react(message: discord.Message, prompt: str) -> None:
     reactions = utils.text_emoji(prompt)
 
     chance = random.randint(0, 9) == 9
-    left  = 'greens' if chance else 'left_bird'
-    right = 'beens'  if chance else 'right_bird'
+    left = 'greens' if chance else 'left_bird'
+    right = 'beens' if chance else 'right_bird'
 
     if len(reactions) > 18:
         await utils.react_emoji(message, left)
