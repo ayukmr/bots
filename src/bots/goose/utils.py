@@ -58,22 +58,6 @@ async def animate_the_cat(message: discord.Message, bear: list[str]) -> None:
             await asyncio.sleep(1)
             await msg.edit(content=b)
 
-# def entropy(img):
-#     with img.clone() as img:
-#         if img.width > 512:
-#             img.resize(512, int(img.height * (512 / img.width)))
-
-#         img.transform_colorspace('gray')
-#         histogram = img.histogram
-
-#         total = sum(histogram.values())
-#         entropy = -sum(
-#             (count / total) * math.log2(count / total)
-#             for count in histogram.values()
-#         )
-
-#         return entropy
-
 async def jimothy(message: discord.Message) -> None:
     attachment = message.attachments[0]
     filename = f'assets/jim/{attachment.filename}'
@@ -86,11 +70,6 @@ async def jimothy(message: discord.Message) -> None:
         file = BytesIO(await attachment.read())
 
         with Image(file=file) as img:
-            # if img.signature == '97f038e9c2e62d01c7c243a8c0aa93a0f7859e93935fff5baa649cfd261e5c5b' or (img.width == 1000 and img.height == 1000):
-            #     Image(filename='assets/jim/algaespin.png').save(file=buf)
-            # elif entropy(img) > 0.9:
-            #     Image(filename='assets/jim/algaespin.png').save(file=buf)
-            # else:
             if img.width > 1024:
                 img.resize(1024, int(img.height * (1024 / img.width)))
 
@@ -99,7 +78,6 @@ async def jimothy(message: discord.Message) -> None:
 
             file = BytesIO()
 
-            # img.save(filename=filename)
             img.save(file=buf)
 
     buf.seek(0)
